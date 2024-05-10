@@ -1,0 +1,24 @@
+FROM node:21-alpine
+
+WORKDIR /app
+
+#COPIAMOS EL PACKAGE.JSON
+COPY package.json /
+
+#CREAMOS EL AMBIENTE.
+RUN npm install 
+
+#COPIAMOS TODO EL PROYECTO.
+COPY . /
+
+#CONSTRUIMOS EL BUILD DEL PROYECTO.
+RUN npm run build 
+
+#SALGA POR EL PUERTO 3000
+EXPOSE 3000
+
+#INICIE EL PROYECTO.
+CMD ["npm", "start"]
+
+
+
